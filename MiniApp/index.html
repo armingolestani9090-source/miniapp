@@ -1,1 +1,933 @@
+<!DOCTYPE html>  <html lang="fa" dir="rtl">  <head>  
+    <meta charset="UTF-8">  <meta name="viewport"  
+      content="width=device-width, initial-scale=1.0">  
+
+<meta name="theme-color" content="#080d0b">  
+
+<meta name="description"  
+      content="BaleTrade - محیط آزمایشی آموزش بازار ارزهای دیجیتال">  
+
+<title>BaleTrade | Demo Exchange</title>  
+
+<link rel="preconnect" href="https://fonts.googleapis.com">  
+
+<link rel="preconnect"  
+      href="https://fonts.gstatic.com"  
+      crossorigin>  
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"  
+      rel="stylesheet">  
+
+<link rel="stylesheet" href="css/style.css">  
+
+<script src="https://unpkg.com/lightweight-charts@4.2.2/dist/lightweight-charts.standalone.production.js"  
+        defer></script>  
+
+<script src="js/app.js" defer></script>
+
+</head>  <body>  <div class="app">  <!-- هدر -->  
+
+<header class="topbar">  
+
+    <div class="brand">  
+
+        <div class="brand-icon">B</div>  
+
+        <div>  
+            <div class="brand-name">BaleTrade</div>  
+            <div class="brand-sub">DIGITAL ASSET PLATFORM</div>  
+        </div>  
+
+    </div>  
+
+    <div class="header-actions">  
+
+        <span class="demo-badge">  
+            <i></i>  
+            حساب آزمایشی  
+        </span>  
+
+        <button class="icon-btn"  
+                id="refreshBtn"  
+                aria-label="به‌روزرسانی بازار">  
+            ↻  
+        </button>  
+
+        <div class="avatar">A</div>  
+
+    </div>  
+
+</header>  
+
+
+<main>  
+
+    <!-- =========================  
+         صفحه خانه  
+    ========================== -->  
+
+    <section class="page active" id="homePage">  
+
+        <div class="welcome">  
+
+            <div>  
+
+                <span class="eyebrow">  
+                    BALETRADE MARKET  
+                </span>  
+
+                <h1>بازار ارزهای دیجیتال</h1>  
+
+                <p>  
+                    تمرین معامله در محیط آزمایشی  
+                </p>  
+
+            </div>  
+
+            <div class="market-status offline">  
+
+                <span class="status-dot"></span>  
+
+                <span class="status-text">  
+                    در حال اتصال  
+                </span>  
+
+            </div>  
+
+        </div>  
+
+
+        <!-- کارت موجودی -->  
+
+        <div class="balance-card">  
+
+            <div class="balance-top">  
+
+                <span>ارزش کل دارایی‌ها</span>  
+
+                <span class="demo-label">  
+                    DEMO ACCOUNT  
+                </span>  
+
+            </div>  
+
+            <div class="balance-value" id="totalBalance">  
+                ۱۰۰,۰۰۰,۰۰۰  
+                <small>تومان</small>  
+            </div>  
+
+            <div class="balance-bottom">  
+
+                <div>  
+                    <span>موجودی نقدی IRT</span>  
+
+                    <strong id="cashBalance">  
+                        ۱۰۰,۰۰۰,۰۰۰ تومان  
+                    </strong>  
+                </div>  
+
+                <div>  
+                    <span>سود و زیان تحقق‌نیافته</span>  
+
+                    <strong id="dailyPnl" class="positive">  
+                        ۰ تومان  
+                    </strong>  
+                </div>  
+
+            </div>  
+
+            <div class="balance-actions">  
+
+                <button class="primary-btn"  
+                        onclick="openPage('tradePage')">  
+                    شروع معامله  
+                </button>  
+
+                <button class="secondary-btn"  
+                        onclick="openPage('walletPage')">  
+                    کیف پول  
+                </button>  
+
+            </div>  
+
+        </div>  
+
+
+        <!-- بازار -->  
+
+        <div class="section-heading">  
+
+            <div>  
+                <h2>بازارها</h2>  
+                <p>ارزهای منتخب</p>  
+            </div>  
+
+            <span class="live-tag">  
+                <i></i>  
+                MARKET DATA  
+            </span>  
+
+        </div>  
+
+
+        <div class="market-table">  
+
+            <div class="table-head">  
+
+                <span>نام ارز</span>  
+                <span>قیمت (تومان)</span>  
+                <span>تغییرات</span>  
+
+            </div>  
+
+            <div id="coinList"></div>  
+
+        </div>  
+
+
+        <!-- دارایی‌ها -->  
+
+        <div class="section-heading">  
+
+            <div>  
+                <h2>دارایی‌های من</h2>  
+                <p>خلاصه سبد آزمایشی</p>  
+            </div>  
+
+            <button class="text-btn"  
+                    onclick="openPage('walletPage')">  
+                مشاهده همه ←  
+            </button>  
+
+        </div>  
+
+
+        <div class="holdings-preview" id="homeHoldings"></div>  
+
+    </section>  
+
+
+
+    <!-- =========================  
+         صفحه معامله  
+    ========================== -->  
+
+    <section class="page" id="tradePage">  
+
+        <div class="trade-header">  
+
+            <button class="back-btn"  
+                    onclick="openPage('homePage')">  
+                →  
+            </button>  
+
+            <div>  
+
+                <span class="eyebrow">  
+                    SPOT DEMO TRADING  
+                </span>  
+
+                <h2>معامله آزمایشی</h2>  
+
+            </div>  
+
+            <span class="demo-badge">DEMO</span>  
+
+        </div>  
+
+
+        <!-- انتخاب ارز -->  
+
+        <div class="coin-selector">  
+
+            <div class="coin-identity">  
+
+                <div class="coin-logo" id="tradeCoinLogo">  
+                    ₿  
+                </div>  
+
+                <div>  
+
+                    <h3 id="tradeCoinName">  
+                        بیت‌کوین  
+                    </h3>  
+
+                    <span id="tradeCoinSymbol">  
+                        BTC / IRT  
+                    </span>  
+
+                </div>  
+
+            </div>  
+
+
+            <div class="coin-current-price">  
+
+                <strong id="tradePrice">۰</strong>  
+
+                <span>تومان</span>  
+
+                <small id="tradeChange" class="positive">  
+                    ۰٪  
+                </small>  
+
+            </div>  
+
+        </div>  
+
+
+        <!-- انتخاب بازار -->  
+
+        <div class="pair-selector">  
+
+            <span>بازار پرداخت</span>  
+
+            <div class="pair-options">  
+
+                <button class="pair-option active"  
+                        data-pair="IRT"  
+                        onclick="setQuoteCurrency('IRT')">  
+                    IRT  
+                </button>  
+
+                <button class="pair-option"  
+                        data-pair="USDT"  
+                        onclick="setQuoteCurrency('USDT')">  
+                    USDT  
+                </button>  
+
+            </div>  
+
+            <span class="pair-description" id="pairDescription">  
+                قیمت‌ها بر حسب تومان  
+            </span>  
+
+        </div>  
+
+
+        <!-- نمودار -->  
+
+        <div class="chart-card">  
+
+            <div class="chart-top">  
+
+                <div>  
+
+                    <span class="eyebrow">  
+                        PRICE CHART  
+                    </span>  
+
+                    <h3>نمودار قیمت</h3>  
+
+                </div>  
+
+
+                <div class="chart-periods">  
+
+                    <button data-period="1">۱د</button>  
+
+                    <button data-period="5"  
+                            class="selected">  
+                        ۵د  
+                    </button>  
+
+                    <button data-period="15">۱۵د</button>  
+
+                    <button data-period="60">۱س</button>  
+
+                    <button data-period="D">۱روز</button>  
+
+                </div>  
+
+            </div>  
+
+
+            <div class="candle-info">  
+
+                <span>  
+                    باز شدن:  
+                    <b id="candleOpen">-</b>  
+                </span>  
+
+                <span>  
+                    بیشترین:  
+                    <b id="candleHigh">-</b>  
+                </span>  
+
+                <span>  
+                    کمترین:  
+                    <b id="candleLow">-</b>  
+                </span>  
+
+                <span>  
+                    بسته شدن:  
+                    <b id="candleClose">-</b>  
+                </span>  
+
+            </div>  
+
+
+            <div id="chart"></div>  
+
+            <div class="chart-message"  
+                 id="chartMessage">  
+                در انتظار دریافت اطلاعات نمودار  
+            </div>  
+
+
+            <div class="chart-footer">  
+
+                <span>اطلاعات بازار</span>  
+
+                <span>قیمت بر حسب تومان</span>  
+
+            </div>  
+
+        </div>  
+
+
+
+        <div class="trade-layout">  
+
+            <div class="trade-main">  
+
+
+                <!-- دفتر سفارشات -->  
+
+                <div class="panel orderbook-panel">  
+
+                    <div class="panel-title">  
+
+                        <div>  
+                            <h3>دفتر سفارشات</h3>  
+                            <p>نمایش نمونه قیمت‌ها</p>  
+                        </div>  
+
+                        <span class="panel-sub">  
+                            DEMO BOOK  
+                        </span>  
+
+                    </div>  
+
+
+                    <div class="orderbook-head">  
+
+                        <span>قیمت</span>  
+                        <span>مقدار</span>  
+                        <span>نوع</span>  
+
+                    </div>  
+
+
+                    <div id="asks"></div>  
+
+
+                    <div class="last-price">  
+
+                        <span>آخرین قیمت</span>  
+
+                        <strong id="lastPrice">  
+                            ۰  
+                        </strong>  
+
+                    </div>  
+
+
+                    <div id="bids"></div>  
+
+                </div>  
+
+
+
+                <!-- معاملات اخیر -->  
+
+                <div class="panel recent-panel">  
+
+                    <div class="panel-title">  
+
+                        <div>  
+                            <h3>معاملات اخیر من</h3>  
+                            <p>تاریخچه معاملات مجازی شما</p>  
+                        </div>  
+
+                        <span class="panel-sub">  
+                            MY TRADES  
+                        </span>  
+
+                    </div>  
+
+
+                    <div class="recent-head">  
+
+                        <span>نوع</span>  
+                        <span>قیمت</span>  
+                        <span>مقدار</span>  
+                        <span>زمان</span>  
+
+                    </div>  
+
+
+                    <div id="recentTrades"></div>  
+
+                </div>  
+
+            </div>  
+
+
+
+            <!-- فرم معامله -->  
+
+            <div class="panel trade-form">  
+
+                <div class="panel-title">  
+
+                    <h3>ثبت سفارش</h3>  
+
+                    <span class="panel-sub">  
+                        DEMO ORDER  
+                    </span>  
+
+                </div>  
+
+
+                <div class="trade-tabs">  
+
+                    <button id="buyTab"  
+                            class="buy-tab active"  
+                            onclick="setTradeType('buy')">  
+                        خرید  
+                    </button>  
+
+                    <button id="sellTab"  
+                            class="sell-tab"  
+                            onclick="setTradeType('sell')">  
+                        فروش  
+                    </button>  
+
+                </div>  
+
+
+                <div class="available-box">  
+
+                    <span id="availableLabel">  
+                        موجودی نقد قابل استفاده  
+                    </span>  
+
+                    <strong id="availableBalance">  
+                        ۱۰۰,۰۰۰,۰۰۰ تومان  
+                    </strong>  
+
+                </div>  
+
+
+                <label class="input-label"  
+                       for="tradeAmount">  
+                    مقدار ارز  
+                </label>  
+
+
+                <div class="input-box">  
+
+                    <input id="tradeAmount"  
+                           type="number"  
+                           min="0"  
+                           step="any"  
+                           inputmode="decimal"  
+                           placeholder="مثلاً 0.001">  
+
+                    <span id="amountSymbol">BTC</span>  
+
+                </div>  
+
+
+                <div class="quick-amounts">  
+
+                    <button onclick="setAmount(25)">۲۵٪</button>  
+
+                    <button onclick="setAmount(50)">۵۰٪</button>  
+
+                    <button onclick="setAmount(75)">۷۵٪</button>  
+
+                    <button onclick="setAmount(100)">۱۰۰٪</button>  
+
+                </div>  
+
+
+                <div class="order-details">  
+
+                    <div>  
+                        <span>قیمت واحد</span>  
+                        <strong id="unitPrice">۰</strong>  
+                    </div>  
+
+                    <div>  
+                        <span>مبلغ سفارش</span>  
+                        <strong id="orderTotal">۰ تومان</strong>  
+                    </div>  
+
+                    <div>  
+                        <span>نرخ کارمزد مجازی</span>  
+                        <strong id="feeRate">۰.۳۰٪</strong>  
+                    </div>  
+
+                    <div>  
+                        <span>مبلغ کارمزد</span>  
+                        <strong id="feeAmount">۰ تومان</strong>  
+                    </div>  
+
+                    <div class="order-final">  
+                        <span>مبلغ نهایی</span>  
+                        <strong id="finalTotal">۰ تومان</strong>  
+                    </div>  
+
+                </div>  
+
+
+                <button id="submitTrade"  
+                        class="submit-buy"  
+                        onclick="submitTrade()">  
+                    خرید  
+                </button>  
+
+
+                <p class="trade-notice">  
+                    این معامله کاملاً آزمایشی است.  
+                    هیچ پول واقعی جابه‌جا نمی‌شود.  
+                </p>  
+
+            </div>  
+
+        </div>  
+
+
+
+        <!-- موقعیت‌های باز -->  
+
+        <div class="panel positions-panel">  
+
+            <div class="panel-title">  
+
+                <div>  
+                    <h3>موقعیت‌های باز من</h3>  
+                    <p>OPEN POSITIONS</p>  
+                </div>  
+
+                <span class="position-count"  
+                      id="positionCount">  
+                    ۰ موقعیت  
+                </span>  
+
+            </div>  
+
+
+            <div class="pnl-summary">  
+
+                <div>  
+                    <span>ارزش فعلی دارایی‌ها</span>  
+                    <strong id="positionValue">۰ تومان</strong>  
+                </div>  
+
+                <div>  
+                    <span>سود / زیان تحقق‌نیافته</span>  
+                    <strong id="positionPnl" class="positive">  
+                        ۰ تومان  
+                    </strong>  
+                </div>  
+
+            </div>  
+
+
+            <div class="position-head">  
+
+                <span>ارز</span>  
+                <span>مقدار</span>  
+                <span>ارزش فعلی</span>  
+                <span>سود / زیان</span>  
+
+            </div>  
+
+
+            <div id="positionsList"></div>  
+
+        </div>  
+
+    </section>  
+
+
+
+    <!-- =========================  
+         کیف پول  
+    ========================== -->  
+
+    <section class="page" id="walletPage">  
+
+        <div class="trade-header">  
+
+            <button class="back-btn"  
+                    onclick="openPage('homePage')">  
+                →  
+            </button>  
+
+            <div>  
+
+                <span class="eyebrow">  
+                    MY WALLET  
+                </span>  
+
+                <h2>کیف پول من</h2>  
+
+            </div>  
+
+        </div>  
+
+
+        <div class="balance-card">  
+
+            <div class="balance-top">  
+
+                <span>ارزش کل کیف پول</span>  
+
+                <span class="demo-label">  
+                    DEMO WALLET  
+                </span>  
+
+            </div>  
+
+
+            <div class="balance-value"  
+                 id="walletTotal">  
+                ۱۰۰,۰۰۰,۰۰۰  
+                <small>تومان</small>  
+            </div>  
+
+
+            <div class="balance-bottom">  
+
+                <div>  
+                    <span>موجودی IRT</span>  
+                    <strong id="walletCash">  
+                        ۱۰۰,۰۰۰,۰۰۰ تومان  
+                    </strong>  
+                </div>  
+
+                <div>  
+                    <span>ارزش ارزها</span>  
+                    <strong id="walletCoins">  
+                        ۰ تومان  
+                    </strong>  
+                </div>  
+
+            </div>  
+
+
+            <div class="balance-actions">  
+
+                <button class="primary-btn"  
+                        onclick="openDepositModal()">  
+                    افزایش موجودی آزمایشی  
+                </button>  
+
+            </div>  
+
+        </div>  
+
+
+        <div class="section-heading">  
+
+            <div>  
+                <h2>دارایی‌ها</h2>  
+                <p>موجودی تمام ارزهای حساب</p>  
+            </div>  
+
+            <span class="live-tag">  
+                LIVE VALUE  
+            </span>  
+
+        </div>  
+
+
+        <div class="assets-list" id="assetsList"></div>  
+
+    </section>  
+
+
+
+    <!-- =========================  
+         حساب آزمایشی  
+    ========================== -->  
+
+    <section class="page" id="demoPage">  
+
+        <div class="trade-header">  
+
+            <div>  
+
+                <span class="eyebrow">  
+                    DEMO ACCOUNT  
+                </span>  
+
+                <h2>حساب آزمایشی</h2>  
+
+            </div>  
+
+            <span class="demo-badge">  
+                DEMO  
+            </span>  
+
+        </div>  
+
+
+        <div class="panel demo-info">  
+
+            <div class="demo-icon">₿</div>  
+
+            <h2>به حساب آزمایشی خوش آمدید</h2>  
+
+            <p>  
+                در این بخش می‌توانید با قیمت‌های بازار،  
+                خریدوفروش مجازی انجام دهید و نتیجه معاملات  
+                خود را بررسی کنید.  
+            </p>  
+
+            <div class="demo-stat-grid">  
+
+                <div>  
+                    <span>موجودی اولیه</span>  
+                    <strong>۱۰۰ میلیون تومان</strong>  
+                </div>  
+
+                <div>  
+                    <span>نوع حساب</span>  
+                    <strong>آزمایشی</strong>  
+                </div>  
+
+                <div>  
+                    <span>پول واقعی</span>  
+                    <strong class="positive">استفاده نمی‌شود</strong>  
+                </div>  
+
+                <div>  
+                    <span>تاریخچه</span>  
+                    <strong>ذخیره در مرورگر</strong>  
+                </div>  
+
+            </div>  
+
+            <button class="primary-btn full-btn"  
+                    onclick="openPage('tradePage')">  
+                شروع تمرین  
+            </button>  
+
+        </div>  
+
+    </section>  
+
+</main>  
+
+
+
+<!-- منوی پایین -->  
+
+<nav class="bottom-nav">  
+
+    <button class="nav-item active"  
+            data-page="homePage"  
+            onclick="openPage('homePage')">  
+
+        <span>⌂</span>  
+        <small>خانه</small>  
+
+    </button>  
+
+
+    <button class="nav-item"  
+            data-page="tradePage"  
+            onclick="openPage('tradePage')">  
+
+        <span>▥</span>  
+        <small>معامله</small>  
+
+    </button>  
+
+
+    <button class="nav-item"  
+            data-page="walletPage"  
+            onclick="openPage('walletPage')">  
+
+        <span>◫</span>  
+        <small>کیف پول</small>  
+
+    </button>  
+
+
+    <button class="nav-item"  
+            data-page="demoPage"  
+            onclick="openPage('demoPage')">  
+
+        <span>◉</span>  
+        <small>آزمایشی</small>  
+
+    </button>  
+
+</nav>
+
+</div>  <!-- پنجره افزایش موجودی آزمایشی -->  <div class="modal-overlay"  
+     id="depositModal">  <div class="modal">  
+
+    <button class="modal-close"  
+            onclick="closeDepositModal()">  
+        ×  
+    </button>  
+
+    <div class="modal-icon">＋</div>  
+
+    <h2>افزایش موجودی آزمایشی</h2>  
+
+    <p>  
+        این بخش فقط موجودی مجازی حساب را افزایش می‌دهد.  
+        هیچ پرداخت یا انتقال بانکی انجام نمی‌شود.  
+    </p>  
+
+    <label for="depositAmount">  
+        مبلغ موردنظر  
+    </label>  
+
+    <div class="input-box">  
+
+        <input id="depositAmount"  
+               type="number"  
+               min="1000"  
+               step="1000"  
+               placeholder="مثلاً ۵۰۰۰۰۰">  
+
+        <span>تومان</span>  
+
+    </div>  
+
+    <div class="quick-amounts">  
+
+        <button onclick="setDepositAmount(1000000)">  
+            ۱ میلیون  
+        </button>  
+
+        <button onclick="setDepositAmount(5000000)">  
+            ۵ میلیون  
+        </button>  
+
+        <button onclick="setDepositAmount(10000000)">  
+            ۱۰ میلیون  
+        </button>  
+
+    </div>  
+
+    <button class="primary-btn full-btn"  
+            onclick="confirmDemoDeposit()">  
+        افزایش موجودی مجازی  
+    </button>  
+
+</div>
+
+</div>  <div class="toast" id="toast"></div>  </body>  
+</html>  ایندکس اچ نتی ام ال
+
 
