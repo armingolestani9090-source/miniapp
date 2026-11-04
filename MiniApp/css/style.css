@@ -1,1 +1,1953 @@
+:root {
+--bg: #080d0b;
+--card: #111a16;
+--card2: #151f1a;
+--border: #23332a;
+
+--green: #00d68f;  
+--green2: #00a96e;  
+--red: #ff5364;  
+--yellow: #f5c451;  
+
+--text: #f0f5f1;  
+--muted: #84948b;  
+
+--radius: 18px;
+
+}
+
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+font-family: 'Vazirmatn', sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+button,
+input {
+font-family: inherit;
+}
+
+button {
+cursor: pointer;
+border: none;
+}
+
+button:disabled {
+opacity: .5;
+cursor: not-allowed;
+}
+
+.app {
+width: 100%;
+max-width: 1500px;
+margin: auto;
+padding-bottom: 110px;
+}
+
+/* =========================
+هدر
+========================= */
+
+.topbar {
+height: 75px;
+padding: 0 28px;
+
+display: flex;  
+align-items: center;  
+justify-content: space-between;  
+
+border-bottom: 1px solid var(--border);  
+
+background: rgba(8,13,11,.94);  
+
+position: sticky;  
+top: 0;  
+
+z-index: 20;  
+
+backdrop-filter: blur(20px);
+
+}
+
+.brand {
+display: flex;
+align-items: center;
+gap: 11px;
+}
+
+.brand-icon {
+width: 42px;
+height: 42px;
+
+background: linear-gradient(  
+    135deg,  
+    #00e69a,  
+    #008e60  
+);  
+
+border-radius: 13px;  
+
+color: #001d12;  
+
+font-weight: 900;  
+font-size: 26px;  
+
+display: grid;  
+place-items: center;
+
+}
+
+.brand-name {
+font-size: 18px;
+font-weight: 900;
+}
+
+.brand-sub {
+color: var(--muted);
+font-size: 9px;
+letter-spacing: 1.5px;
+}
+
+.header-actions {
+display: flex;
+align-items: center;
+gap: 13px;
+}
+
+.demo-badge {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+
+color: var(--green);  
+
+background: rgba(0,214,143,.09);  
+
+border: 1px solid rgba(0,214,143,.2);  
+
+padding: 7px 12px;  
+
+border-radius: 30px;  
+
+font-size: 11px;  
+font-weight: 700;
+
+}
+
+.demo-badge i,
+.live-tag i,
+.status-dot {
+width: 7px;
+height: 7px;
+
+background: var(--green);  
+
+border-radius: 50%;  
+
+display: inline-block;  
+
+box-shadow: 0 0 12px var(--green);
+
+}
+
+.icon-btn {
+background: var(--card);
+color: var(--text);
+
+border: 1px solid var(--border);  
+
+border-radius: 11px;  
+
+width: 38px;  
+height: 38px;  
+
+font-size: 22px;  
+
+transition: .2s;
+
+}
+
+.icon-btn:hover {
+color: var(--green);
+border-color: var(--green);
+}
+
+.avatar {
+width: 37px;
+height: 37px;
+
+border-radius: 50%;  
+
+display: grid;  
+place-items: center;  
+
+color: var(--green);  
+background: #173326;  
+
+font-weight: 800;
+
+}
+
+/* =========================
+صفحات
+========================= */
+
+main {
+padding: 25px 28px;
+}
+
+.page {
+display: none;
+animation: pageIn .35s ease;
+}
+
+.page.active {
+display: block;
+}
+
+@keyframes pageIn {
+
+from {  
+    opacity: 0;  
+    transform: translateY(9px);  
+}  
+
+to {  
+    opacity: 1;  
+    transform: translateY(0);  
+}
+
+}
+
+/* =========================
+عنوان صفحات
+========================= */
+
+.welcome {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+margin: 10px 0 25px;
+
+}
+
+.eyebrow {
+color: var(--green);
+
+font-size: 10px;  
+letter-spacing: 1.5px;  
+
+font-weight: 800;
+
+}
+
+.welcome h1 {
+font-size: clamp(22px, 4vw, 31px);
+
+margin: 7px 0;  
+
+font-weight: 900;
+
+}
+
+.welcome p {
+color: var(--muted);
+font-size: 13px;
+}
+
+.market-status {
+display: flex;
+align-items: center;
+gap: 8px;
+
+font-size: 12px;  
+color: var(--muted);
+
+}
+
+.market-status.online {
+color: var(--green);
+}
+
+.market-status.offline {
+color: var(--yellow);
+}
+
+.market-status.offline .status-dot {
+background: var(--yellow);
+box-shadow: 0 0 10px var(--yellow);
+}
+
+/* =========================
+کارت موجودی
+========================= */
+
+.balance-card {
+position: relative;
+overflow: hidden;
+
+background:  
+    radial-gradient(  
+        circle at 5% 5%,  
+        rgba(0,214,143,.2),  
+        transparent 35%  
+    ),  
+    linear-gradient(  
+        120deg,  
+        #14251c,  
+        #101a15 70%  
+    );  
+
+border: 1px solid #254a36;  
+
+border-radius: 23px;  
+
+padding: 25px;  
+
+margin-bottom: 35px;
+
+}
+
+.balance-card::after {
+content: "";
+
+position: absolute;  
+
+width: 190px;  
+height: 190px;  
+
+border: 1px solid rgba(0,214,143,.13);  
+
+border-radius: 50%;  
+
+left: -75px;  
+bottom: -120px;  
+
+pointer-events: none;
+
+}
+
+.balance-top {
+display: flex;
+justify-content: space-between;
+
+color: #b6c8bd;  
+
+font-size: 12px;
+
+}
+
+.demo-label {
+color: var(--green);
+
+font-size: 10px;  
+font-weight: 900;  
+
+letter-spacing: 1px;
+
+}
+
+.balance-value {
+margin: 16px 0 23px;
+
+font-size: clamp(27px, 6vw, 39px);  
+
+font-weight: 900;  
+
+direction: ltr;  
+text-align: right;
+
+}
+
+.balance-value small {
+font-size: 13px;
+color: var(--muted);
+}
+
+.balance-bottom {
+display: flex;
+flex-wrap: wrap;
+
+gap: 45px;  
+
+border-top: 1px solid rgba(255,255,255,.08);  
+
+padding-top: 18px;
+
+}
+
+.balance-bottom div {
+display: flex;
+flex-direction: column;
+gap: 7px;
+}
+
+.balance-bottom span {
+color: var(--muted);
+font-size: 11px;
+}
+
+.balance-bottom strong {
+font-size: 13px;
+}
+
+.positive {
+color: var(--green) !important;
+}
+
+.negative {
+color: var(--red) !important;
+}
+
+.balance-actions {
+display: flex;
+flex-wrap: wrap;
+
+gap: 10px;  
+
+margin-top: 23px;
+
+}
+
+.primary-btn,
+.secondary-btn {
+border-radius: 11px;
+
+padding: 11px 22px;  
+
+font-weight: 800;  
+font-size: 12px;  
+
+transition: .2s;
+
+}
+
+.primary-btn {
+color: #002417;
+background: var(--green);
+}
+
+.primary-btn:hover {
+background: #28efae;
+
+transform: translateY(-2px);  
+
+box-shadow: 0 5px 22px rgba(0,214,143,.17);
+
+}
+
+.secondary-btn {
+color: var(--text);
+
+background: rgba(255,255,255,.06);  
+
+border: 1px solid var(--border);
+
+}
+
+.secondary-btn:hover {
+border-color: var(--green);
+color: var(--green);
+}
+
+/* =========================
+عنوان بخش‌ها
+========================= */
+
+.section-heading {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+margin: 35px 0 17px;
+
+}
+
+.section-heading h2 {
+font-size: 19px;
+font-weight: 900;
+}
+
+.section-heading p {
+color: var(--muted);
+font-size: 11px;
+
+margin-top: 3px;
+
+}
+
+.live-tag {
+display: flex;
+align-items: center;
+gap: 7px;
+
+color: var(--green);  
+
+font-size: 9px;  
+font-weight: 800;
+
+}
+
+.text-btn {
+background: transparent;
+color: var(--green);
+
+font-size: 11px;  
+font-weight: 700;
+
+}
+
+/* =========================
+جدول بازار
+========================= */
+
+.market-table,
+.panel,
+.holdings-preview,
+.assets-list {
+background: var(--card);
+
+border: 1px solid var(--border);  
+
+border-radius: var(--radius);  
+
+overflow: hidden;
+
+}
+
+.table-head,
+.coin-row {
+display: grid;
+
+grid-template-columns: 1.4fr 1fr .8fr;  
+
+align-items: center;  
+
+gap: 10px;  
+
+padding: 15px 19px;
+
+}
+
+.table-head {
+color: var(--muted);
+
+font-size: 10px;  
+
+border-bottom: 1px solid var(--border);
+
+}
+
+.coin-row {
+border-bottom: 1px solid rgba(255,255,255,.045);
+
+cursor: pointer;  
+
+transition: .2s;
+
+}
+
+.coin-row:last-child {
+border-bottom: none;
+}
+
+.coin-row:hover {
+background: var(--card2);
+}
+
+.coin-info {
+display: flex;
+align-items: center;
+gap: 11px;
+}
+
+.coin-logo {
+width: 39px;
+height: 39px;
+
+flex-shrink: 0;  
+
+border-radius: 13px;  
+
+background: #20352a;  
+color: var(--green);  
+
+display: grid;  
+place-items: center;  
+
+font-weight: 900;  
+font-size: 18px;
+
+}
+
+.coin-info strong {
+display: block;
+font-size: 12px;
+}
+
+.coin-info small {
+color: var(--muted);
+font-size: 10px;
+}
+
+.coin-price {
+font-size: 12px;
+font-weight: 800;
+
+direction: ltr;  
+text-align: right;
+
+}
+
+.coin-change {
+font-size: 11px;
+
+direction: ltr;  
+text-align: right;  
+
+font-weight: 800;
+
+}
+
+/* =========================
+دارایی‌های خلاصه
+========================= */
+
+.holding-row,
+.asset-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 12px;  
+
+padding: 15px 18px;  
+
+border-bottom: 1px solid rgba(255,255,255,.05);
+
+}
+
+.holding-row:last-child,
+.asset-row:last-child {
+border-bottom: none;
+}
+
+.holding-row strong,
+.asset-row strong {
+font-size: 12px;
+}
+
+.holding-row small,
+.asset-row small {
+display: block;
+
+color: var(--muted);  
+
+font-size: 10px;  
+
+margin-top: 4px;
+
+}
+
+/* =========================
+صفحه معامله
+========================= */
+
+.trade-header {
+display: flex;
+align-items: center;
+
+gap: 13px;  
+
+margin: 10px 0 25px;
+
+}
+
+.trade-header h2 {
+font-size: 21px;
+font-weight: 900;
+}
+
+.back-btn {
+width: 40px;
+height: 40px;
+
+border-radius: 12px;  
+
+color: var(--green);  
+background: var(--card);  
+
+border: 1px solid var(--border);  
+
+font-size: 23px;
+
+}
+
+.trade-header .demo-badge {
+margin-right: auto;
+}
+
+.coin-selector {
+background: var(--card);
+
+border: 1px solid var(--border);  
+
+border-radius: var(--radius);  
+
+padding: 18px;  
+
+display: flex;  
+align-items: center;  
+justify-content: space-between;  
+
+margin-bottom: 12px;
+
+}
+
+.coin-identity {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.coin-identity h3 {
+font-size: 15px;
+}
+
+.coin-identity span {
+color: var(--muted);
+font-size: 10px;
+}
+
+.coin-current-price {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+
+gap: 3px;
+
+}
+
+.coin-current-price strong {
+font-size: 17px;
+direction: ltr;
+}
+
+.coin-current-price span {
+color: var(--muted);
+font-size: 10px;
+}
+
+.coin-current-price small {
+font-weight: 800;
+}
+
+/* =========================
+انتخاب جفت ارز
+========================= */
+
+.pair-selector {
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+
+gap: 12px;  
+
+padding: 13px 16px;  
+
+margin-bottom: 17px;  
+
+background: var(--card);  
+
+border: 1px solid var(--border);  
+
+border-radius: 13px;  
+
+font-size: 11px;
+
+}
+
+.pair-options {
+display: flex;
+gap: 5px;
+
+background: #0a100d;  
+
+padding: 4px;  
+
+border-radius: 9px;
+
+}
+
+.pair-option {
+background: transparent;
+
+color: var(--muted);  
+
+padding: 7px 13px;  
+
+border-radius: 7px;  
+
+font-size: 10px;  
+font-weight: 800;
+
+}
+
+.pair-option.active {
+background: var(--green);
+color: #002417;
+}
+
+.pair-description {
+color: var(--muted);
+margin-right: auto;
+}
+
+/* =========================
+نمودار
+========================= */
+
+.chart-card {
+background: var(--card);
+
+border: 1px solid var(--border);  
+
+border-radius: var(--radius);  
+
+padding: 18px;  
+
+margin-bottom: 18px;  
+
+overflow: hidden;
+
+}
+
+.chart-top {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 10px;
+
+}
+
+.chart-top h3 {
+font-size: 15px;
+margin-top: 4px;
+}
+
+.chart-periods {
+display: flex;
+gap: 4px;
+}
+
+.chart-periods button {
+background: var(--card2);
+
+color: var(--muted);  
+
+border-radius: 7px;  
+
+padding: 6px 9px;  
+
+font-size: 10px;
+
+}
+
+.chart-periods button.selected {
+color: #002417;
+background: var(--green);
+}
+
+#chart {
+width: 100%;
+height: 300px;
+margin-top: 12px;
+}
+
+.candle-info {
+display: flex;
+flex-wrap: wrap;
+
+gap: 12px;  
+
+padding: 13px 4px;  
+
+font-size: 11px;  
+
+color: var(--muted);
+
+}
+
+.candle-info b {
+color: var(--text);
+font-weight: 800;
+}
+
+.chart-message {
+text-align: center;
+
+color: var(--muted);  
+
+font-size: 10px;  
+
+padding: 8px;
+
+}
+
+.chart-footer {
+display: flex;
+justify-content: space-between;
+
+color: var(--muted);  
+
+font-size: 9px;  
+
+margin-top: 10px;
+
+}
+
+/* =========================
+چیدمان معامله
+========================= */
+
+.trade-layout {
+display: grid;
+
+grid-template-columns: 1fr 350px;  
+
+gap: 18px;  
+
+align-items: start;
+
+}
+
+.trade-main {
+display: grid;
+gap: 18px;
+}
+
+.panel {
+padding: 19px;
+}
+
+.panel-title {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+margin-bottom: 18px;
+
+}
+
+.panel-title h3 {
+font-size: 14px;
+font-weight: 900;
+}
+
+.panel-title p,
+.panel-sub {
+color: var(--muted);
+font-size: 9px;
+margin-top: 3px;
+}
+
+/* =========================
+دفتر سفارشات
+========================= */
+
+.orderbook-head,
+.order-row {
+display: grid;
+
+grid-template-columns: 1fr 1fr .7fr;  
+
+gap: 8px;  
+
+align-items: center;  
+
+padding: 9px 3px;  
+
+font-size: 10px;
+
+}
+
+.orderbook-head {
+color: var(--muted);
+
+font-size: 9px;  
+
+border-bottom: 1px solid var(--border);
+
+}
+
+.order-row {
+position: relative;
+overflow: hidden;
+}
+
+.order-row span {
+position: relative;
+z-index: 1;
+}
+
+.order-row .sell-color {
+color: var(--red);
+}
+
+.order-row .buy-color {
+color: var(--green);
+}
+
+.order-row .depth {
+position: absolute;
+
+right: 0;  
+top: 0;  
+bottom: 0;  
+
+opacity: .09;
+
+}
+
+.order-row .depth.sell {
+background: var(--red);
+}
+
+.order-row .depth.buy {
+background: var(--green);
+}
+
+.last-price {
+padding: 12px 5px;
+
+margin: 8px 0;  
+
+display: flex;  
+align-items: center;  
+justify-content: space-between;  
+
+background: rgba(0,214,143,.07);  
+
+border-radius: 9px;
+
+}
+
+.last-price span {
+color: var(--muted);
+font-size: 10px;
+}
+
+.last-price strong {
+color: var(--green);
+font-size: 14px;
+}
+
+/* =========================
+معاملات اخیر
+========================= */
+
+.recent-head,
+.recent-row {
+display: grid;
+
+grid-template-columns: .6fr 1.2fr .8fr .7fr;  
+
+gap: 8px;  
+
+align-items: center;  
+
+padding: 9px 3px;  
+
+font-size: 10px;
+
+}
+
+.recent-head {
+color: var(--muted);
+
+font-size: 9px;  
+
+border-bottom: 1px solid var(--border);
+
+}
+
+.recent-row {
+padding: 10px 3px;
+
+border-bottom: 1px solid rgba(255,255,255,.04);
+
+}
+
+/* =========================
+فرم معامله
+========================= */
+
+.trade-form {
+position: sticky;
+top: 90px;
+}
+
+.trade-tabs {
+display: grid;
+
+grid-template-columns: 1fr 1fr;  
+
+background: #0a100d;  
+
+padding: 4px;  
+
+border-radius: 12px;  
+
+gap: 5px;  
+
+margin-bottom: 17px;
+
+}
+
+.trade-tabs button {
+border-radius: 9px;
+
+padding: 11px;  
+
+font-size: 13px;  
+font-weight: 900;  
+
+background: transparent;  
+
+color: var(--muted);
+
+}
+
+.buy-tab.active {
+background: var(--green);
+color: #002417;
+}
+
+.sell-tab.active {
+background: var(--red);
+color: white;
+}
+
+.available-box {
+display: flex;
+justify-content: space-between;
+
+gap: 8px;  
+
+background: var(--card2);  
+
+padding: 12px;  
+
+border-radius: 10px;  
+
+margin-bottom: 19px;  
+
+font-size: 10px;
+
+}
+
+.available-box span {
+color: var(--muted);
+}
+
+.available-box strong {
+font-size: 10px;
+}
+
+.input-label {
+display: block;
+
+font-size: 11px;  
+
+margin-bottom: 8px;
+
+}
+
+.input-box {
+display: flex;
+align-items: center;
+
+background: #0a100d;  
+
+border: 1px solid var(--border);  
+
+border-radius: 11px;  
+
+padding: 0 12px;  
+
+height: 48px;
+
+}
+
+.input-box:focus-within {
+border-color: var(--green);
+
+box-shadow: 0 0 0 3px rgba(0,214,143,.07);
+
+}
+
+.input-box input {
+min-width: 0;
+
+width: 100%;  
+
+color: var(--text);  
+
+background: transparent;  
+
+outline: none;  
+border: none;  
+
+font-size: 14px;  
+
+direction: ltr;
+
+}
+
+.input-box input::placeholder {
+color: #526158;
+}
+
+.input-box span {
+color: var(--green);
+
+font-size: 11px;  
+font-weight: 900;
+
+}
+
+.quick-amounts {
+display: grid;
+
+grid-template-columns: repeat(4, 1fr);  
+
+gap: 6px;  
+
+margin-top: 9px;
+
+}
+
+.quick-amounts button {
+padding: 7px 2px;
+
+background: var(--card2);  
+
+color: var(--muted);  
+
+border-radius: 7px;  
+
+font-size: 10px;  
+
+transition: .2s;
+
+}
+
+.quick-amounts button:hover {
+color: var(--green);
+background: #1c3025;
+}
+
+.order-details {
+border-top: 1px solid var(--border);
+
+margin-top: 20px;  
+
+padding-top: 13px;
+
+}
+
+.order-details div {
+display: flex;
+justify-content: space-between;
+
+gap: 10px;  
+
+padding: 8px 0;
+
+}
+
+.order-details span {
+color: var(--muted);
+font-size: 10px;
+}
+
+.order-details strong {
+font-size: 11px;
+}
+
+.order-final {
+border-top: 1px solid var(--border);
+margin-top: 5px;
+padding-top: 13px !important;
+}
+
+.order-final strong {
+color: var(--green);
+font-size: 13px;
+}
+
+.submit-buy,
+.submit-sell {
+width: 100%;
+
+margin-top: 16px;  
+
+padding: 13px;  
+
+border-radius: 11px;  
+
+font-size: 13px;  
+font-weight: 900;  
+
+transition: .2s;
+
+}
+
+.submit-buy {
+color: #002417;
+background: var(--green);
+}
+
+.submit-sell {
+color: white;
+background: var(--red);
+}
+
+.submit-buy:hover,
+.submit-sell:hover {
+transform: translateY(-2px);
+filter: brightness(1.1);
+}
+
+.trade-notice {
+text-align: center;
+
+color: var(--muted);  
+
+font-size: 9px;  
+
+line-height: 2;  
+
+margin-top: 12px;
+
+}
+
+/* =========================
+موقعیت‌ها
+========================= */
+
+.positions-panel {
+margin-top: 18px;
+}
+
+.position-count {
+color: var(--green);
+font-size: 10px;
+}
+
+.pnl-summary {
+display: grid;
+
+grid-template-columns: 1fr 1fr;  
+
+gap: 10px;  
+
+margin-bottom: 17px;
+
+}
+
+.pnl-summary div {
+background: var(--card2);
+
+padding: 14px;  
+
+border-radius: 12px;
+
+}
+
+.pnl-summary span {
+display: block;
+
+color: var(--muted);  
+
+font-size: 10px;  
+
+margin-bottom: 8px;
+
+}
+
+.pnl-summary strong {
+font-size: 14px;
+}
+
+.position-head,
+.position-row {
+display: grid;
+
+grid-template-columns: 1fr .8fr 1fr 1fr;  
+
+gap: 8px;  
+
+align-items: center;  
+
+padding: 11px 3px;  
+
+font-size: 10px;
+
+}
+
+.position-head {
+color: var(--muted);
+
+font-size: 9px;  
+
+border-bottom: 1px solid var(--border);
+
+}
+
+.position-row {
+border-bottom: 1px solid rgba(255,255,255,.04);
+}
+
+.position-row strong {
+font-size: 10px;
+}
+
+/* =========================
+وضعیت خالی
+========================= */
+
+.empty-state {
+text-align: center;
+
+color: var(--muted);  
+
+font-size: 11px;  
+
+padding: 25px 10px;  
+
+line-height: 2;
+
+}
+
+/* =========================
+کیف پول
+========================= */
+
+.asset-row {
+min-height: 75px;
+}
+
+.asset-row .coin-info {
+min-width: 0;
+}
+
+.asset-value {
+text-align: left;
+flex-shrink: 0;
+}
+
+.asset-value strong {
+direction: ltr;
+display: block;
+}
+
+.asset-value small {
+text-align: left;
+}
+
+/* =========================
+حساب آزمایشی
+========================= */
+
+.demo-info {
+text-align: center;
+padding: 35px 22px;
+}
+
+.demo-icon {
+width: 65px;
+height: 65px;
+
+display: grid;  
+place-items: center;  
+
+margin: 0 auto 20px;  
+
+border-radius: 20px;  
+
+background: rgba(0,214,143,.1);  
+
+color: var(--green);  
+
+font-size: 35px;
+
+}
+
+.demo-info h2 {
+font-size: 20px;
+margin-bottom: 12px;
+}
+
+.demo-info > p {
+color: var(--muted);
+
+font-size: 12px;  
+
+line-height: 2.2;  
+
+max-width: 500px;  
+
+margin: auto;
+
+}
+
+.demo-stat-grid {
+display: grid;
+
+grid-template-columns: 1fr 1fr;  
+
+gap: 10px;  
+
+margin-top: 25px;  
+
+text-align: right;
+
+}
+
+.demo-stat-grid div {
+background: var(--card2);
+
+padding: 15px;  
+
+border-radius: 12px;
+
+}
+
+.demo-stat-grid span {
+display: block;
+
+color: var(--muted);  
+
+font-size: 10px;  
+
+margin-bottom: 7px;
+
+}
+
+.demo-stat-grid strong {
+font-size: 12px;
+}
+
+/* =========================
+دکمه تمام عرض
+========================= */
+
+.full-btn {
+width: 100%;
+margin-top: 20px;
+}
+
+/* =========================
+منوی پایین
+========================= */
+
+.bottom-nav {
+position: fixed;
+
+bottom: 0;  
+left: 0;  
+right: 0;  
+
+height: 76px;  
+
+background: rgba(12,19,15,.96);  
+
+border-top: 1px solid var(--border);  
+
+display: flex;  
+align-items: center;  
+justify-content: center;  
+
+gap: 45px;  
+
+z-index: 30;  
+
+backdrop-filter: blur(20px);
+
+}
+
+.nav-item {
+min-width: 65px;
+
+display: flex;  
+flex-direction: column;  
+align-items: center;  
+
+gap: 3px;  
+
+color: var(--muted);  
+
+background: transparent;  
+
+transition: .2s;
+
+}
+
+.nav-item span {
+font-size: 22px;
+}
+
+.nav-item small {
+font-size: 9px;
+}
+
+.nav-item.active {
+color: var(--green);
+}
+
+.nav-item.active span {
+transform: translateY(-2px);
+}
+
+/* =========================
+پیام
+========================= */
+
+.toast {
+position: fixed;
+
+bottom: 95px;  
+left: 50%;  
+
+transform: translate(-50%, 20px);  
+
+opacity: 0;  
+
+pointer-events: none;  
+
+background: #193326;  
+
+color: var(--green);  
+
+border: 1px solid #28583d;  
+
+padding: 12px 20px;  
+
+border-radius: 12px;  
+
+font-size: 11px;  
+
+z-index: 100;  
+
+transition: .3s;  
+
+white-space: nowrap;  
+
+max-width: calc(100% - 25px);  
+
+text-align: center;
+
+}
+
+.toast.show {
+opacity: 1;
+transform: translate(-50%, 0);
+}
+
+/* =========================
+پنجره افزایش موجودی
+========================= */
+
+.modal-overlay {
+position: fixed;
+
+inset: 0;  
+
+background: rgba(0,0,0,.75);  
+
+backdrop-filter: blur(8px);  
+
+display: none;  
+
+align-items: center;  
+justify-content: center;  
+
+padding: 18px;  
+
+z-index: 100;
+
+}
+
+.modal-overlay.show {
+display: flex;
+animation: fadeIn .2s ease;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+.modal {
+position: relative;
+
+width: 100%;  
+max-width: 420px;  
+
+background: var(--card);  
+
+border: 1px solid var(--border);  
+
+border-radius: 20px;  
+
+padding: 25px;
+
+}
+
+.modal-close {
+position: absolute;
+
+left: 15px;  
+top: 12px;  
+
+background: transparent;  
+
+color: var(--muted);  
+
+font-size: 26px;
+
+}
+
+.modal-icon {
+width: 50px;
+height: 50px;
+
+display: grid;  
+place-items: center;  
+
+background: rgba(0,214,143,.1);  
+
+color: var(--green);  
+
+border-radius: 15px;  
+
+font-size: 25px;  
+
+margin-bottom: 15px;
+
+}
+
+.modal h2 {
+font-size: 17px;
+margin-bottom: 10px;
+}
+
+.modal p {
+color: var(--muted);
+
+font-size: 11px;  
+
+line-height: 2;  
+
+margin-bottom: 20px;
+
+}
+
+.modal label {
+display: block;
+
+font-size: 11px;  
+
+margin-bottom: 8px;
+
+}
+
+/* =========================
+ریسپانسیو
+========================= */
+
+@media (min-width: 1000px) {
+
+.balance-card {  
+    max-width: 100%;  
+}
+
+}
+
+@media (max-width: 850px) {
+
+main {  
+    padding: 20px 14px;  
+}  
+
+.topbar {  
+    padding: 0 14px;  
+}  
+
+.trade-layout {  
+    grid-template-columns: 1fr;  
+}  
+
+.trade-form {  
+    position: static;  
+}  
+
+#chart {  
+    height: 260px;  
+}
+
+}
+
+@media (max-width: 480px) {
+
+.welcome {  
+    align-items: flex-start;  
+    gap: 10px;  
+}  
+
+.market-status {  
+    font-size: 9px;  
+    white-space: nowrap;  
+}  
+
+.balance-card {  
+    padding: 19px;  
+}  
+
+.balance-bottom {  
+    gap: 20px;  
+}  
+
+.balance-bottom strong {  
+    font-size: 11px;  
+}  
+
+.table-head,  
+.coin-row {  
+    padding: 13px 11px;  
+}  
+
+.coin-logo {  
+    width: 34px;  
+    height: 34px;  
+}  
+
+.coin-price {  
+    font-size: 10px;  
+}  
+
+.coin-info strong {  
+    font-size: 11px;  
+}  
+
+.chart-card {  
+    padding: 12px;  
+}  
+
+.chart-periods {  
+    gap: 2px;  
+}  
+
+.chart-periods button {  
+    padding: 6px;  
+    font-size: 9px;  
+}  
+
+#chart {  
+    height: 230px;  
+}  
+
+.panel {  
+    padding: 13px;  
+}  
+
+.position-head,  
+.position-row {  
+    font-size: 8px;  
+    gap: 4px;  
+}  
+
+.position-row strong {  
+    font-size: 8px;  
+}  
+
+.bottom-nav {  
+    gap: 13px;  
+    justify-content: space-around;  
+}  
+
+.nav-item {  
+    min-width: 55px;  
+}  
+
+.demo-badge {  
+    padding: 6px 8px;  
+    font-size: 9px;  
+}  
+
+.header-actions {  
+    gap: 7px;  
+}  
+
+.brand-name {  
+    font-size: 15px;  
+}  
+
+.brand-icon {  
+    width: 36px;  
+    height: 36px;  
+}  
+
+.pair-selector {  
+    gap: 8px;  
+}  
+
+.pair-description {  
+    width: 100%;  
+    margin-right: 0;  
+}  
+
+.demo-stat-grid {  
+    grid-template-columns: 1fr;  
+}  
+
+.candle-info {  
+    gap: 8px;  
+    font-size: 9px;  
+}
+
+}
+
+@media (max-width: 350px) {
+
+.coin-row {  
+    grid-template-columns: 1.2fr 1fr .7fr;  
+}  
+
+.coin-price {  
+    font-size: 9px;  
+}  
+
+.bottom-nav {  
+    gap: 5px;  
+}
+
+}
+
 
